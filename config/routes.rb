@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :sessions
+  resources :favorites
   resources :pictures do
     collection do
       post :confirm
