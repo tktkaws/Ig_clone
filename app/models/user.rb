@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   mount_uploader :image, ImageUploader
   validates :image, presence: true
+  has_many :pictures
 end
