@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <table class="table table-striped">
+    <tr>
+      <th>content</th>
+      <th>user name</th>
+      <th>updated_at</th>
+      <th>image</th>
+    </tr>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.updated_at %></td>
+        <td><%= image_tag user.image.url , size: '100x100' %></td>
+
+        <td><%= link_to '詳細を確認する', user_path(user.id), class: 'btn btn-default'%></td>
+        <td><%= link_to "編集する", edit_user_path(user.id), class: 'btn btn-default' %></td>
+        <td><%= link_to '削除する', user_path(user.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-default' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
