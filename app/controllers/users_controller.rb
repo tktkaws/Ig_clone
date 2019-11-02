@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
@@ -31,6 +32,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to users_path, danger:"削除しました！"
+  end
+
   private
 
   def user_params
@@ -40,5 +46,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def ensure_correct_user
+    @user = User.find_by(id:params[:id])
+    if @user.id != current_user.id
+      redirect_to users_path, danger:"権限がありません"
+    end
   end
 end
