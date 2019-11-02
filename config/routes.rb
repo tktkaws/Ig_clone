@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'top#index'
-  resources :users
+  resources :users do
+    member do
+      get "show_favorites" => "users#show_favorites"
+    end
+  end
   resources :sessions
   resources :favorites
   resources :pictures do

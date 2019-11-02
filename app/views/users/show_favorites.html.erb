@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <table class="table table-striped">
+    <tr>
+      <th>icon</th>
+      <th>name</th>
+      <th>content</th>
+      <th>image</th>
+      <th>updated_at</th>
+    </tr>
+<% @favorites.each do |favorite| %>
+  <tr>
+    <td><%= image_tag favorite.picture.user.image.url , size: '50x50' %></td>
+    <td><%= favorite.picture.user.name %></td>
+    <td><%= favorite.picture.content %></td>
+    <td><%= image_tag favorite.picture.image.url , size: '100x100' %></td>
+    <td><%= favorite.picture.updated_at %></td>
+  </tr>
+<% end %>

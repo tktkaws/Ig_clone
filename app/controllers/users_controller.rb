@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     redirect_to users_path, danger:"削除しました！"
   end
 
+  def show_favorites
+    @favorites = current_user.favorites
+  end
+
   private
 
   def user_params

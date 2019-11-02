@@ -1,18 +1,20 @@
 <div class="container-fluid">
   <table class="table table-striped">
     <tr>
+      <th>icon</th>
+      <th>name</th>
       <th>content</th>
-      <th>user name</th>
-      <th>updated_at</th>
       <th>image</th>
+      <th>updated_at</th>
     </tr>
 
     <% @pictures.each do |picture| %>
       <tr>
-        <td><%= picture.content %></td>
+        <td><%= image_tag picture.user.image.url , size: '50x50' %></td>
         <td><%= picture.user.name %></td>
-        <td><%= picture.updated_at %></td>
+        <td><%= picture.content %></td>
         <td><%= image_tag picture.image.url , size: '100x100' %></td>
+        <td><%= picture.updated_at %></td>
         <% if logged_in? && picture.user_id == current_user.id  %>
         <td><%= link_to '詳細を確認する', picture_path(picture.id), class: 'btn btn-default'%></td>
         <td><%= link_to "ブログを編集する", edit_picture_path(picture.id), class: 'btn btn-default' %></td>
