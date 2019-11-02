@@ -32,6 +32,7 @@ class PicturesController < ApplicationController
     else
       if @picture.save
         redirect_to pictures_path, success: "ブログを作成しました！"
+        PostMailer.post_mail(@picture).deliver  ##追記
       else
         render :new
       end
