@@ -16,17 +16,21 @@
       </div>
     <% end %>
 
+    <%= link_to "Top", root_path %>
+    <%= link_to "Pictures", pictures_path %>
+    <%= link_to "Users", users_path %>
+    
     <% if logged_in? %>
       <%= link_to "Profile", user_path(current_user.id) %>
       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+      <%= link_to "user_name:#{current_user.name}", users_path %>
     <% else %>
       <%= link_to "Sign up", new_user_path %>
       <%= link_to "Login", new_session_path %>
     <% end %>
 
-    <%= link_to "Top", root_path %>
-    <%= link_to "Pictures", pictures_path %>
-    <%= link_to "Users", users_path %>
+
+
 
     <%= yield %>
   </body>
