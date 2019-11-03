@@ -1,11 +1,19 @@
-<h1>Log in</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<div class="container ig_form">
+  <fieldset>
+    <legend>Log in</legend>
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+    <div class="form-group">
+      <%= f.label :email ,class: "control-label"%>
+      <%= f.email_field :email,class: "form-control" ,placeholder:"Email" %>
+    </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <div class="form-group">
+      <%= f.label :password ,class: "control-label"%>
+      <%= f.password_field :password,class: "form-control" ,placeholder:"Password" %>
+    </div>
 
-  <%= f.submit "Log in" %>
-<% end %>
+      <%= f.submit "Log in" ,class: "btn btn-info"%>
+    <% end %>
+  </fieldset>
+</div>

@@ -1,25 +1,25 @@
-<div class="container-fluid">
-  <table class="table table-striped">
-    <tr>
-      <th>image</th>
-      <th>user name</th>
-      <th>email</th>
-    </tr>
-
+<div class="container">
+  <div class="row">
     <% @users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.image.url , size: '100x100' %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
 
+    <div class="col-sm-6 col-md-4">
+
+      <div class="thumbnail">
+        <%= image_tag user.image.url %>
+        <div class="caption">
+          <h3><%= user.name %></h3>
         <% if logged_in? && user.id == current_user.id  %>
-        <td><%= link_to '詳細を確認する', user_path(user.id), class: 'btn btn-default'%></td>
-        <td><%= link_to "編集する", edit_user_path(user.id), class: 'btn btn-default' %></td>
-        <td><%= link_to '削除する', user_path(user.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-default' %></td>
+        <%= link_to '詳細を確認する', user_path(user.id), class: 'btn btn-default'%>
+        <%= link_to "編集する", edit_user_path(user.id), class: 'btn btn-default' %>
+        <%= link_to '削除する', user_path(user.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-default' %>
         <% else %>
-        <td><%= link_to '詳細を確認する', user_path(user.id), class: 'btn btn-default'%></td>
+        <%= link_to '詳細を確認する', user_path(user.id), class: 'btn btn-default'%>
         <% end %>
-      </tr>
+      </div>
+      </div>
+    </div>
     <% end %>
-  </table>
+
+
+</div>
 </div>

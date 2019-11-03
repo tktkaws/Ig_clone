@@ -10,21 +10,37 @@
   </div>
 <% end %>
 
+<div class="container ig_form">
+  <fieldset>
+    <% if @user.new_record? %>
+    <legend>Sign Up</legend>
+    <% else %>
+    <legend>Edit</legend>
+    <% end %>
+
 <%= form_with(model: @user, local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<div class="form-group">
+  <%= f.label :name ,class: "control-label" %>
+  <%= f.text_field :name ,class: "form-control" ,placeholder:"Name" %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  <%= f.label :email ,class: "control-label"%>
+  <%= f.email_field :email ,class: "form-control" ,placeholder:"Email" %>
 
-  <%= f.label :image %>
+  <%= f.label :image ,class: "control-label" %>
   <%= f.file_field :image %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.label :password ,class: "control-label"  %>
+  <%= f.password_field :password ,class: "form-control"  %>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit "Create my account" %>
+  <%= f.label :password_confirmation ,class: "control-label"  %>
+  <%= f.password_field :password_confirmation ,class: "form-control"  %>
+</div>
+<% if @user.new_record? %>
+<%= f.submit "Create my account" ,class: "btn btn-info" %>
+<% else %>
+<%= f.submit "Update" ,class: "btn btn-info" %>
 <% end %>
+
+  <% end %>
+  </fieldset>
+  </div>
