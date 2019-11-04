@@ -1,18 +1,41 @@
-<div class="container-fluid">
-  <table class="table table-striped">
-    <tr>
-      <th>icon</th>
-      <th>name</th>
-      <th>content</th>
-      <th>image</th>
-      <th>updated_at</th>
-    </tr>
-<% @favorites.each do |favorite| %>
-  <tr>
-    <td><%= image_tag favorite.picture.user.image.url , size: '50x50' %></td>
-    <td><%= favorite.picture.user.name %></td>
-    <td><%= favorite.picture.content %></td>
-    <td><%= image_tag favorite.picture.image.url , size: '100x100' %></td>
-    <td><%= favorite.picture.updated_at %></td>
-  </tr>
-<% end %>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+
+      <legend>
+        <h2 class="text-center">お気に入り</h2>
+      </legend>
+
+      <div class="mb-5 row">
+        <div class="col-sm-4">
+          <%= image_tag @user.image.url, class: "img-responsive" %>
+        </div>
+        <div class="col-sm-8">
+          <h3><%= @user.name %></h3>
+          <p><%= @user.email %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+
+      <% @favorites.each do |favorite| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <%= image_tag favorite.picture.image.url , class:"img-responsive"%>
+            </div>
+            <div class="panel-footer">
+              <%= image_tag favorite.picture.user.image.url , size: '50x50'%>
+              <%= favorite.picture.user.name %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

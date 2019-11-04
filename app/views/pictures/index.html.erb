@@ -1,30 +1,21 @@
-<div class="container-fluid">
-  <table class="table table-striped">
-    <tr>
-      <th>icon</th>
-      <th>name</th>
-      <th>content</th>
-      <th>image</th>
-      <th>updated_at</th>
-    </tr>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
 
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= image_tag picture.user.image.url , size: '50x50' %></td>
-        <td><%= picture.user.name %></td>
-        <td><%= picture.content %></td>
-        <td><%= image_tag picture.image.url , size: '100x100' %></td>
-        <td><%= picture.updated_at %></td>
-        <% if logged_in? && picture.user_id == current_user.id  %>
-        <td><%= link_to '詳細を確認する', picture_path(picture.id), class: 'btn btn-default'%></td>
-        <td><%= link_to "ブログを編集する", edit_picture_path(picture.id), class: 'btn btn-default' %></td>
-        <td><%= link_to 'ブログを削除する', picture_path(picture.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-default' %></td>
-        <% else %>
-        <td><%= link_to '詳細を確認する', picture_path(picture.id), class: 'btn btn-default'%></td>
-        <% end %>
+      <% @pictures.each do |picture| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <%= link_to image_tag(picture.image.url, class:"img-responsive"), picture_path(picture.id) %>
 
-      </tr>
-    <% end %>
-  </table>
-  <%= link_to '新規投稿', new_picture_path, class: 'btn btn-default' %>
+            </div>
+            <div class="panel-footer">
+              <%= link_to image_tag(picture.user.image.url, size: '50x50'), user_path(picture.user.id) %>
+              <%= picture.content %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
