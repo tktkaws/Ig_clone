@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'top#index'
+  root 'pictures#index'
   resources :users do
     member do
       get "show_favorites" => "users#show_favorites"

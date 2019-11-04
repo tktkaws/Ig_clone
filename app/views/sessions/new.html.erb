@@ -2,17 +2,14 @@
   <fieldset>
     <legend>Log in</legend>
     <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-
     <div class="form-group">
       <%= f.label :email ,class: "control-label"%>
-      <%= f.email_field :email,class: "form-control" ,placeholder:"Email" %>
+      <%= f.email_field :email ,class: "form-control" ,placeholder:"Email" %>
     </div>
-
     <div class="form-group">
       <%= f.label :password ,class: "control-label"%>
       <%= f.password_field :password,class: "form-control" ,placeholder:"Password" %>
     </div>
-
       <%= f.submit "Log in" ,class: "btn btn-info"%>
     <% end %>
   </fieldset>

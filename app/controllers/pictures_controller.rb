@@ -11,7 +11,10 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+    if logged_in?
+      @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+    end
+
   end
 
   def edit
@@ -19,7 +22,7 @@ class PicturesController < ApplicationController
 
   def update
     if @picture.update(picture_params)
-      redirect_to pictures_path, success: "ブログを編集しました！"
+      redirect_to pictures_path, success: "編集しました！"
     else
       render :edit
     end
@@ -31,7 +34,7 @@ class PicturesController < ApplicationController
       render :new
     else
       if @picture.save
-        redirect_to pictures_path, success: "ブログを作成しました！"
+        redirect_to pictures_path, success: "新規投稿しました！"
         PostMailer.post_mail(@picture).deliver  ##追記
       else
         render :new
@@ -41,7 +44,7 @@ class PicturesController < ApplicationController
 
   def destroy
     @picture.destroy
-    redirect_to pictures_path, danger:"ブログを削除しました！"
+    redirect_to pictures_path, danger:"削除しました！"
   end
 
   def confirm

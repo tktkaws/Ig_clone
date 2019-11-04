@@ -1,29 +1,43 @@
-<%= form_with(model: @picture, local: true ,url: choose_new_or_edit ) do |form| %>
-  <% if @picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
-      <ul>
-
+<% if @picture.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
+    <ul>
       <% @picture.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="picture_content">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
+    </ul>
   </div>
-  <div class="picture_image">
-    <%= form.label :image %>
-    <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-
-
-
-  <%= form.submit %>
 <% end %>
-<%= link_to 'ブログ一覧画面にもどる', pictures_path %>
+
+<div class="container">
+  <div class="row">
+      <div class="jumbotron">
+        <fieldset>
+          <% if @picture.new_record? %>
+            <legend>新規投稿</legend>
+          <% else %>
+            <legend>編集</legend>
+          <% end %>
+
+          <%= form_with(model: @picture, local: true ,url: choose_new_or_edit ) do |form| %>
+          <div class="form-group">
+            <%= form.label :content ,class: "control-label" %>
+            <%= form.text_field :content ,class: "form-control" ,placeholder:"content" %>
+            <%= form.label :image ,class: "control-label" %>
+            <% if @picture.new_record? %>
+            <% else %>
+              <%= image_tag @picture.image.url ,class: "img-responsive"%>
+            <% end %>
+            <%= form.file_field :image %>
+            <%= form.hidden_field :image_cache %>
+          </div>
+          <% if @picture.new_record? %>
+            <%= form.submit "新規投稿" ,class: "btn btn-info" %>
+          <% else %>
+            <%= form.submit "更新" ,class: "btn btn-danger" %>
+          <% end %>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>
