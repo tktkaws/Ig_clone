@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
@@ -27,7 +27,7 @@
               <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
               <li><%= link_to "favorites", show_favorites_user_path(current_user.id) %></li>
               <li><%= link_to "新規投稿", new_picture_path %></li>
-              <% else %>
+            <% else %>
               <li><%= link_to "Sign up", new_user_path %></li>
               <li><%= link_to "Login", new_session_path %></li>
             <% end %>
@@ -35,14 +35,14 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Pictures", pictures_path %></li>
             <li><%= link_to "Users", users_path %></li>
-            </ul>
+          </ul>
         </div>
       </div>
     </nav>
 
     <% flash.each do |name, msg| %>
       <div class="alert alert-<%= name %>">
-      <%= msg.html_safe %>
+        <%= msg.html_safe %>
       </div>
     <% end %>
 
