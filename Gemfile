@@ -46,5 +46,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'faker'
 gem 'fog-aws'
-gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'unicorn', '5.4.1'
 gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+
+group :development, :production, :test do
+  gem 'jquery-rails'
+end
